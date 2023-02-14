@@ -13,6 +13,8 @@ const cloudinaryImageUpload = async (file) => {
       resolve(
         {
           url: result.secure_url,
+          asset_id: result.asset_id,
+          public_id: result.public_id,
         },
         { resource_type: "auto" }
       );
@@ -20,4 +22,19 @@ const cloudinaryImageUpload = async (file) => {
   });
 };
 
-module.exports = cloudinaryImageUpload;
+const cloudinaryDeleteImages = async (fileToDelete) => {
+  return new Promise((resolve) => {
+    cloudinary.uploader.destroy(fileToDelete, (result) => {
+      resolve(
+        {
+          url: result.secure_url,
+          asset_id: result.asset_id,
+          public_id: result.public_id,
+        },
+        { resource_type: "auto" }
+      );
+    });
+  });
+};
+
+module.exports = { cloudinaryImageUpload, cloudinaryDeleteImages };

@@ -8,6 +8,7 @@ const {
   addToWishlist,
   rating,
   uploadProductImages,
+  deleteProductImages,
 } = require("../controllers/product");
 const { isAdmin, protectRoutes } = require("../middlewares/protect");
 const {
@@ -18,12 +19,19 @@ const {
 let router = express.Router();
 
 router.put(
-  "/upload/:id",
+  "/upload",
   protectRoutes,
   isAdmin,
   uploadImage.array("images", 10),
   resizeProductImages,
   uploadProductImages
+);
+
+router.delete(
+  "/delete-images/:id",
+  protectRoutes,
+  isAdmin,
+  deleteProductImages
 );
 
 router

@@ -38,11 +38,8 @@ var productSchema = new mongoose.Schema(
       //   enum: ["Apple", "Samsung", "Lenovo"],
       required: true,
     },
-    color: {
-      type: String,
-      //   enum: ["Black", "Brown", "Red"],
-      required: true,
-    },
+    color: [],
+    tags: [],
     sold: {
       type: Number,
       default: 0,

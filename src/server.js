@@ -6,9 +6,11 @@ const authRoutes = require("./api/routes/auth");
 const productRoutes = require("./api/routes/product");
 const blogRoutes = require("./api/routes/blog");
 const brandRoutes = require("./api/routes/brand");
+const colorRoutes = require("./api/routes/color");
 const categoryRoutes = require("./api/routes/productcategory");
 const blogCategoryRoutes = require("./api/routes/blogcategory");
 const couponRoutes = require("./api/routes/coupon");
+const contactMessageRoutes = require("./api/routes/contactmsg");
 const cors = require("cors");
 const { notFound, errorhandler } = require("./api/middlewares/errorHandler");
 const cookieParser = require("cookie-parser");
@@ -23,7 +25,7 @@ app.use(morgan());
 app.use(express.json());
 app.use(cors());
 app.use(cookieParser());
-app.use(express.static('public'))
+app.use(express.static("public"));
 
 // routes
 app.use("/api/user", authRoutes);
@@ -32,7 +34,9 @@ app.use("/api/blog", blogRoutes);
 app.use("/api/product-category", categoryRoutes);
 app.use("/api/blog-category", blogCategoryRoutes);
 app.use("/api/brand", brandRoutes);
+app.use("/api/color", colorRoutes);
 app.use("/api/coupon", couponRoutes);
+app.use("/api/message", contactMessageRoutes);
 
 // custom middlewares
 app.use(notFound);
