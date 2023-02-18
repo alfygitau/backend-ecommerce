@@ -23,6 +23,7 @@ const {
   createOrder,
   getOrders,
   updateOrderStatus,
+  getAllOrders,
 } = require("../controllers/auth");
 const { protectRoutes, isAdmin } = require("../middlewares/protect");
 
@@ -32,6 +33,9 @@ const router = express.Router();
 router.post("/register", registerUser);
 router.post("/login", loginUser);
 router.post("/admin-login", adminLogin);
+
+// get all orders
+router.get("/all-user-orders", protectRoutes, getAllOrders);
 
 // forgot password
 router.post("/forgot-password-token", forgotPasswordToken);
@@ -65,11 +69,19 @@ router.post("/cart/apply-coupon", protectRoutes, applyCoupon);
 // order
 router.post("/cart/create-order", protectRoutes, createOrder);
 
+// get all orders
+router.get("/all-user-orders", protectRoutes, getAllOrders);
+
 // get user orders
 router.get("/orders", protectRoutes, getOrders);
 
 // update order status
-router.put("/order/update-order/:id", protectRoutes, isAdmin, updateOrderStatus);
+router.put(
+  "/order/update-order/:id",
+  protectRoutes,
+  isAdmin,
+  updateOrderStatus
+);
 
 // save user address
 router.put("/save-address", protectRoutes, saveUserAddress);

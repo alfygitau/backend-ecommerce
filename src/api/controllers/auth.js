@@ -452,8 +452,22 @@ const getOrders = asyncHandler(async (req, res) => {
   try {
     let userOrders = await Order.findOne({ orderBy: _id })
       .populate("products.product")
+      .populate("orderBy")
       .exec();
     res.json(userOrders);
+  } catch (error) {
+    throw new Error(error);
+  }
+});
+
+const getAllOrders = asyncHandler(async (req, res) => {
+  try {
+    let allOrders = await Order.find({})
+      .populate("products.product")
+      .populate("orderBy")
+      .exec();
+      
+    res.json(allOrders);
   } catch (error) {
     throw new Error(error);
   }
@@ -503,4 +517,5 @@ module.exports = {
   createOrder,
   getOrders,
   updateOrderStatus,
+  getAllOrders,
 };

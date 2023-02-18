@@ -11,10 +11,13 @@ const categoryRoutes = require("./api/routes/productcategory");
 const blogCategoryRoutes = require("./api/routes/blogcategory");
 const couponRoutes = require("./api/routes/coupon");
 const contactMessageRoutes = require("./api/routes/contactmsg");
+const uploadRoutes = require("./api/routes/upload");
 const cors = require("cors");
 const { notFound, errorhandler } = require("./api/middlewares/errorHandler");
 const cookieParser = require("cookie-parser");
 const morgan = require("morgan");
+const bodyParser = require("body-parser");
+//...
 
 connectDb();
 const port = process.env.PORT || 5000;
@@ -26,6 +29,8 @@ app.use(express.json());
 app.use(cors());
 app.use(cookieParser());
 app.use(express.static("public"));
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.urlencoded({ extended: true }));
 
 // routes
 app.use("/api/user", authRoutes);
@@ -37,6 +42,7 @@ app.use("/api/brand", brandRoutes);
 app.use("/api/color", colorRoutes);
 app.use("/api/coupon", couponRoutes);
 app.use("/api/message", contactMessageRoutes);
+app.use("/api/upload", uploadRoutes);
 
 // custom middlewares
 app.use(notFound);

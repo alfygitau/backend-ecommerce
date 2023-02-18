@@ -7,32 +7,10 @@ const {
   deleteProduct,
   addToWishlist,
   rating,
-  uploadProductImages,
-  deleteProductImages,
 } = require("../controllers/product");
 const { isAdmin, protectRoutes } = require("../middlewares/protect");
-const {
-  uploadImage,
-  resizeProductImages,
-} = require("../middlewares/uploadFile");
 
 let router = express.Router();
-
-router.put(
-  "/upload",
-  protectRoutes,
-  isAdmin,
-  uploadImage.array("images", 10),
-  resizeProductImages,
-  uploadProductImages
-);
-
-router.delete(
-  "/delete-images/:id",
-  protectRoutes,
-  isAdmin,
-  deleteProductImages
-);
 
 router
   .route("/")

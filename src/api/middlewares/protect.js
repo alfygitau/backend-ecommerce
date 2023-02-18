@@ -4,7 +4,10 @@ const User = require("../models/User");
 
 const protectRoutes = asyncHandler(async (req, res, next) => {
   let token;
-  if (req.headers.authorization.startsWith("Bearer")) {
+  if (
+    req.headers.authorization &&
+    req.headers.authorization.startsWith("Bearer")
+  ) {
     token = req.headers.authorization.split(" ")[1];
     try {
       if (token) {
@@ -12,9 +15,11 @@ const protectRoutes = asyncHandler(async (req, res, next) => {
         const user = await User.findById(decoded.id);
         req.user = user;
         next();
+      } else {
+        throw new Error("Not authorized token expired. Kindly login again");
       }
     } catch (error) {
-      throw new Error("Not authorized token expired. Kindly login again");
+      throw new Error(error);
     }
   } else {
     throw new Error("There is no token attached to the headers");
