@@ -9,6 +9,7 @@ const protectRoutes = asyncHandler(async (req, res, next) => {
     req.headers.authorization.startsWith("Bearer")
   ) {
     token = req.headers.authorization.split(" ")[1];
+    console.log(token)
     try {
       if (token) {
         let decoded = jwt.verify(token, process.env.JWT_SECRET);
@@ -16,7 +17,7 @@ const protectRoutes = asyncHandler(async (req, res, next) => {
         req.user = user;
         next();
       } else {
-        throw new Error("Not authorized token expired. Kindly login again");
+        throw new Error("Not authorized, token expired. Kindly login again");
       }
     } catch (error) {
       throw new Error(error);
