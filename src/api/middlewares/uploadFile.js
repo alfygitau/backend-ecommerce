@@ -30,7 +30,7 @@ let multerFilter = (req, file, cb) => {
 };
 
 let uploadImage = multer({
-  storage: multerStorage,
+  storage: multer.diskStorage({}),
   fileFilter: multerFilter,
   limits: { fileSize: 4000000 },
 });
