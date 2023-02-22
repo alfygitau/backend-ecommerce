@@ -3,7 +3,7 @@ const { protectRoutes, isAdmin } = require("../middlewares/protect");
 const {
   uploadImage,
   resizeProductImages,
-} = require("../middlewares/uploadFile");
+} = require("../../uploadFile");
 const {
   uploadProductImages,
   deleteProductImages,

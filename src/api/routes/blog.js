@@ -10,7 +10,7 @@ const {
   uploadBlogImages,
 } = require("../controllers/blog");
 const { isAdmin, protectRoutes } = require("../middlewares/protect");
-const { uploadImage, resizeBlogImages } = require("../middlewares/uploadFile");
+const { uploadImage, resizeBlogImages } = require("../../uploadFile");
 
 const router = express.Router();
 
@@ -29,7 +29,6 @@ router.put("/dislikes", protectRoutes, dislikeBlog);
 router.put("/:id", protectRoutes, isAdmin, updateBlog);
 router.delete("/:id", protectRoutes, isAdmin, deleteBlog);
 router.get("/:id", getSingleBlog);
-
 
 router.get("/", getAllBlogs);
 
