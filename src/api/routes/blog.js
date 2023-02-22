@@ -10,7 +10,7 @@ const {
   uploadBlogImages,
 } = require("../controllers/blog");
 const { isAdmin, protectRoutes } = require("../middlewares/protect");
-const { uploadImage, resizeBlogImages } = require("../../uploadFile");
+const { uploadImage, resizeBlogImages } = require("../middlewares/uploadFile");
 
 const router = express.Router();
 

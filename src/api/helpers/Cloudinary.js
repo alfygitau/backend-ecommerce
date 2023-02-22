@@ -1,4 +1,5 @@
 const cloudinary = require("cloudinary");
+const { CloudinaryStorage } = require("multer-storage-cloudinary")
 
 cloudinary.config({
   cloud_name: process.env.CLOUD_NAME,
@@ -6,6 +7,15 @@ cloudinary.config({
   api_secret: process.env.CLOUD_SECRET,
   secure: true,
 });
+
+const storage = new CloudinaryStorage({
+  cloudinary: cloudinary,
+  params: {
+    folder: "DEV",
+  },
+});
+
+module.exports = storage;
 
 const cloudinaryImageUpload = async (file) => {
   return new Promise((resolve) => {

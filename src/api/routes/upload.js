@@ -3,7 +3,7 @@ const { protectRoutes, isAdmin } = require("../middlewares/protect");
 const {
   uploadImage,
   resizeProductImages,
-} = require("../../uploadFile");
+} = require("../middlewares/uploadFile");
 const {
   uploadProductImages,
   deleteProductImages,
@@ -16,7 +16,7 @@ router.post(
   protectRoutes,
   isAdmin,
   uploadImage.array("images", 10),
-  resizeProductImages,
+  // resizeProductImages,
   uploadProductImages
 );
 
