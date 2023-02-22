@@ -36,7 +36,7 @@ router.post("/login", loginUser);
 router.post("/admin-login", adminLogin);
 
 // get order by user id
-router.get("/orders/:id", protectRoutes, getOrderByUserId);
+router.get("/orders/:id", getOrderByUserId);
 
 // get all orders
 router.get("/all-user-orders", protectRoutes, getAllOrders);
