@@ -5,8 +5,8 @@ const fs = require("fs");
 
 let multerStorage = multer.diskStorage({
   destination: function (req, file, cb) {
-    console.log(path.resolve(__dirname, "/public/images"));
-    cb(null, path.resolve(__dirname, "/public/images"));
+    console.log(path.resolve(__dirname, "images"));
+    cb(null, path.resolve(__dirname, "images"));
   },
   filename: function (req, file, cb) {
     let uniqueSuffix = Date.now() + "-" + Math.round(Math.random() * 1e9);
@@ -42,12 +42,8 @@ const resizeProductImages = async (req, res, next) => {
         .resize(300, 300)
         .toFormat("jpeg")
         .jpeg({ quality: 90 })
-        .toFile(
-          path.join(__dirname, `/public/images/products/${file.filename}`)
-        );
-      fs.unlinkSync(
-        path.join(__dirname, `/public/images/products/${file.filename}`)
-      );
+        .toFile(`images/products/${file.filename}`);
+      fs.unlinkSync(`images/products/${file.filename}`);
     })
   );
   next();
@@ -60,12 +56,8 @@ const resizeBlogImages = async (req, res, next) => {
         .resize(300, 300)
         .toFormat("jpeg")
         .jpeg({ quality: 90 })
-        .toFile(
-          path.join(__dirname, `/public/images/blogs/${file.filename}`)
-        );
-      fs.unlinkSync(
-        path.join(__dirname, `/public/images/blogs/${file.filename}`)
-      );
+        .toFile(`images/blogs/${file.filename}`);
+      fs.unlinkSync(`images/blogs/${file.filename}`);
     })
   );
   next();
