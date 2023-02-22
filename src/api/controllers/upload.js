@@ -14,7 +14,7 @@ const uploadProductImages = asyncHandler(async (req, res) => {
       const { path } = file;
       let newPath = await uploader(path);
       urls.push(newPath);
-      fs.unlinkSync(path);
+      // fs.unlinkSync(path);
     }
     const images = urls.map((file) => file);
     res.json(images);

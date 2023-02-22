@@ -46,9 +46,9 @@ const resizeProductImages = async (req, res, next) => {
         .toFile(
           path.join(__dirname, `../public/images/products/${file.filename}`)
         );
-      fs.unlinkSync(
-        path.join(__dirname, `../public/images/products/${file.filename}`)
-      );
+      // fs.unlinkSync(
+      //   path.join(__dirname, `../public/images/products/${file.filename}`)
+      // );
     })
   );
   next();
@@ -64,9 +64,9 @@ const resizeBlogImages = async (req, res, next) => {
         .toFile(
           path.join(__dirname, `../public/images/blogs/${file.filename}`)
         );
-      fs.unlinkSync(
-        path.join(__dirname, `../public/images/blogs/${file.filename}`)
-      );
+      // fs.unlinkSync(
+      //   path.join(__dirname, `../public/images/blogs/${file.filename}`)
+      // );
     })
   );
   next();
