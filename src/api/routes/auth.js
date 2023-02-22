@@ -70,14 +70,14 @@ router.post("/cart/apply-coupon", protectRoutes, applyCoupon);
 // order
 router.post("/cart/create-order", protectRoutes, createOrder);
 
+// get order by user id
+router.get("/orders/:id", protectRoutes, isAdmin, getOrderByUserId);
+
 // get all orders
 router.get("/all-user-orders", protectRoutes, getAllOrders);
 
 // get user orders
 router.get("/orders", protectRoutes, getOrders);
-
-// get order by user id
-router.get("/orders/:id", protectRoutes, isAdmin, getOrderByUserId);
 
 // update order status
 router.put(
