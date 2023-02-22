@@ -24,6 +24,7 @@ const {
   getOrders,
   updateOrderStatus,
   getAllOrders,
+  getOrderByUserId,
 } = require("../controllers/auth");
 const { protectRoutes, isAdmin } = require("../middlewares/protect");
 
@@ -68,6 +69,9 @@ router.post("/cart/apply-coupon", protectRoutes, applyCoupon);
 
 // order
 router.post("/cart/create-order", protectRoutes, createOrder);
+
+// get order by user id
+router.get("/orders/:id", protectRoutes, isAdmin, getOrderByUserId);
 
 // get all orders
 router.get("/all-user-orders", protectRoutes, getAllOrders);
