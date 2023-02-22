@@ -16,7 +16,7 @@ router.post(
   protectRoutes,
   isAdmin,
   uploadImage.array("images", 10),
-  resizeProductImages,
+  // resizeProductImages,
   uploadProductImages
 );
 

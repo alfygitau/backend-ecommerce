@@ -6,8 +6,8 @@ const storage = require("../helpers/Cloudinary");
 
 let multerStorage = multer.diskStorage({
   destination: function (req, file, cb) {
-    console.log(path.resolve(__dirname, "../public/images"));
-    cb(null, path.resolve(__dirname, "../public/images"));
+    console.log(path.join(__dirname, "../public/images"));
+    cb(null, path.join(__dirname, "../public/images"));
   },
   filename: function (req, file, cb) {
     let uniqueSuffix = Date.now() + "-" + Math.round(Math.random() * 1e9);
@@ -46,9 +46,9 @@ const resizeProductImages = async (req, res, next) => {
         .toFile(
           path.join(__dirname, `../public/images/products/${file.filename}`)
         );
-      // fs.unlinkSync(
-      //   path.join(__dirname, `../public/images/products/${file.filename}`)
-      // );
+      fs.unlinkSync(
+        path.join(__dirname, `../public/images/products/${file.filename}`)
+      );
     })
   );
   next();
@@ -64,9 +64,9 @@ const resizeBlogImages = async (req, res, next) => {
         .toFile(
           path.join(__dirname, `../public/images/blogs/${file.filename}`)
         );
-      // fs.unlinkSync(
-      //   path.join(__dirname, `../public/images/blogs/${file.filename}`)
-      // );
+      fs.unlinkSync(
+        path.join(__dirname, `../public/images/blogs/${file.filename}`)
+      );
     })
   );
   next();
