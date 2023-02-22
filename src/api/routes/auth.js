@@ -67,11 +67,11 @@ router.delete("/empty-cart", protectRoutes, emptyCart);
 
 router.post("/cart/apply-coupon", protectRoutes, applyCoupon);
 
-// order
-router.post("/cart/create-order", protectRoutes, createOrder);
-
 // get order by user id
 router.get("/orders/:id", protectRoutes, isAdmin, getOrderByUserId);
+
+// order
+router.post("/cart/create-order", protectRoutes, createOrder);
 
 // get all orders
 router.get("/all-user-orders", protectRoutes, getAllOrders);
