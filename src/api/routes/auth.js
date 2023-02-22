@@ -68,7 +68,7 @@ router.delete("/empty-cart", protectRoutes, emptyCart);
 router.post("/cart/apply-coupon", protectRoutes, applyCoupon);
 
 // get order by user id
-router.get("/orders/:id", protectRoutes, isAdmin, getOrderByUserId);
+router.get("/orders/:id", protectRoutes, getOrderByUserId);
 
 // order
 router.post("/cart/create-order", protectRoutes, createOrder);
