@@ -4,7 +4,7 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "start": "pm2 start src/server.js --watch"
+    "start": "nodemon src/server.js"
   },
   "keywords": [],
   "author": "",
