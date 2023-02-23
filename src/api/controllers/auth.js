@@ -474,6 +474,7 @@ const getAllOrders = asyncHandler(async (req, res) => {
 });
 
 const getOrderByUserId = asyncHandler(async (req, res) => {
+  console.log(req.params)
   let { id } = req.params;
   try {
     let userOrders = await Order.findOne({ orderBy: id })
