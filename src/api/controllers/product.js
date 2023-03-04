@@ -35,6 +35,7 @@ const getAllProducts = asyncHandler(async (req, res) => {
 
     let queryStr = JSON.stringify(queryObject);
     queryStr = queryStr.replace(/\b(gte|gt|lte|lt)\b/g, (match) => `$${match}`);
+    console.log(queryStr);
     let query = Product.find(JSON.parse(queryStr));
 
     // sorting
@@ -65,6 +66,17 @@ const getAllProducts = asyncHandler(async (req, res) => {
 
     let products = await query;
     res.json(products);
+  } catch (error) {
+    throw new Error(error);
+  }
+});
+
+const searchProducts = asyncHandler(async (req, res) => {
+  try {
+    const { title } = req.query;
+    console.log(req.query)
+    let result = await Product.find({title: { $regex: title, $options: "i" }});
+    res.json(result)
   } catch (error) {
     throw new Error(error);
   }
@@ -183,4 +195,5 @@ module.exports = {
   deleteProduct,
   addToWishlist,
   rating,
+  searchProducts,
 };
